@@ -44,6 +44,13 @@ function App() {
       setList(newList);
     };
   
+  
+    //clear all the items from the list
+    const handleClear = () => {
+      setList([]);
+      showAlert(true, 'clear all of the to-dos.', 'danger');
+  };
+  
   return (
     <main className="container">
       <div className="todo-form">
@@ -74,6 +81,7 @@ function App() {
         </div>
       {list.length > 0 && <button
         className='clear-btn'
+        onClick={handleClear}
       >Clear All</button>}
     </main>
   );

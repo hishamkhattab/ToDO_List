@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 
 const Alert = ({ msg, clr,removeAlert,list }) => {
@@ -9,6 +10,7 @@ const Alert = ({ msg, clr,removeAlert,list }) => {
         }, 2000);
 
         return () => clearTimeout(setTimer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [list]);
 
     return (
