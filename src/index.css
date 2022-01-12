@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700&display=swap");
+
+/*variables*/
+:root {
+  /*colors*/
+  --main-bg: linear-gradient(to right, #d3cce3, #e9e4f0);
+  --blue: #2299ba;
+  --black400: #333333c2;
+  --black200: rgb(172, 169, 169);
+  --white-100: #ffff;
+  --white-400: rgba(255, 255, 255, 0.664);
+  --bg-red: #f06858;
+  --bg-green: #34eb86;
+  --clr-red: #86251a;
+  --clr-green: #175c36;
+  /*transition*/
+  --transition: all 0.3s linear;
+  /*margin*/
+  --margin-xb: 4em;
+  --margin-b: 2em;
+  --margin-m: 1em;
+  --margin-s: 0.5em;
+  /*padding*/
+  --padding-b: 2em;
+  --padding-m: 1em;
+  --padding-s: 0.5em;
+  /*border-raduis*/
+  --border-rd: 0.2em;
+  /*font-size*/
+  --font-s-b: 1.5em;
+  --font-s-m: 1em;
+  --font-s-s: 0.7em;
+  /*font-wieght*/
+  --font-w-300: 300;
+  --font-w-500: 500;
+  --font-w-600: 600;
+  --font-w-700: 700;
+  /*letter-spacing*/
+  --l-spacing: 1.6;
+}
+
+/*global style*/
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: var(--main-bg, #d3cce3);
+  color: var(--black400, #3333);
+}
+
+.container {
+  width: 90vw;
+  margin: var(--margin-xb, 4em) auto;
+}
+
+h1 {
+  font-size: var(--font-s-b, 1.5em);
+  margin-bottom: var(--margin-b, 2em);
+  font-weight: var(--font-w-700);
+  text-transform: uppercase;
+  line-height: 1.3rem;
+}
+
+p {
+  margin: 0;
+  font-size: var(--font-s-s);
+  text-transform: capitalize;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 767px) {
+  .container {
+    width: 95vw;
+    margin: var(--margin-b) auto;
+  }
+
+  p {
+    font-size: var(--font-s-m);
+  }
+}
+
+/***********************************************************/
+
+/*home-page*/
+.todo-form {
+  margin: 0 auto;
+  width: 100%;
+}
+
+form {
+  flex-direction: column;
+}
+.alert {
+  padding: 0;
+  text-align: center;
+  width: 70%;
+  margin: var(--margin-m) auto;
+  font-size: var(--font-s-s);
+  text-transform: capitalize;
+  border-radius: var(--border-rd);
+}
+
+.danger {
+  background: var(--bg-red);
+  color: var(--clr-red);
+}
+
+.success {
+  background: var(--bg-green);
+  color: var(--clr-green);
+}
+.todo-form input {
+  width: 85%;
+  padding: var(--padding-s);
+  color: #333;
+  font-size: var(--font-s-s);
+  border-radius: var(--border-rd);
+  margin-bottom: var(--margin-s);
+  border: 0;
+  outline: 0.5px solid var(--white-400);
+}
+
+.todo-form input:focus {
+  outline: 0.5px solid var(--blue);
+  background: transparent;
+}
+
+.btn {
+  padding: var(--padding-s) var(--padding-m);
+  border: 0;
+  width: 10ch;
+  font-family: "Open Sans";
+  font-size: var(--font-s-s);
+  font-weight: var(--font-w-500);
+  border-radius: var(--border-rd);
+  background-color: var(--blue);
+  color: var(--white-100);
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.todo-list {
+  margin: var(--margin-b) 0;
+  width: 100%;
+}
+
+.todo-item {
+  justify-content: space-between;
+  margin-bottom: var(--margin-b);
+  padding: var(--padding-m) var(--padding-s);
+}
+
+.todo-item:hover {
+  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.todo-control {
+  gap: 0.5em;
+}
+
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border: 0;
+  font-size: var(--font-s-m);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.edit-btn {
+  color: var(--bg-green);
+}
+
+.delete-btn {
+  color: var(--bg-red);
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+.clear-btn {
+  display: block;
+  margin: 0 auto;
+  padding: var(--padding-s) var(--padding-m);
+  border: 0;
+  font-family: "Open Sans";
+  font-size: var(--font-s-s);
+  font-weight: var(--font-w-500);
+  border-radius: var(--border-rd);
+  background-color: var(--bg-red);
+  color: var(--clr-red);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  color: var(--white-100);
+}
+
+@media screen and (min-width: 767px) {
+  .todo-form {
+    margin: 0 auto;
+    width: 600px;
+  }
+
+  form {
+    flex-direction: row;
+  }
+
+  .todo-form input {
+    width: 85%;
+    padding: var(--padding-s) var(--padding-m);
+    font-size: var(--font-s-m);
+    margin-bottom: 0;
+    margin-right: var(--margin-s);
+  }
+
+  .todo-form input:focus {
+    outline-width: 1px;
+  }
+
+  .btn {
+    font-size: var(--font-s-m);
+    border-radius: var(--border-rd);
+  }
+
+  .btn:hover {
+    background-color: var(--white-100);
+    color: var(--blue);
+  }
+  .todo-item {
+    padding: var(--padding-b) var(--padding-m);
+  }
+}
