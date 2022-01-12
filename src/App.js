@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { nanoid } from 'nanoid';
 import List from './List';
+import Alert from './Alert';
 
 function App() {
 
@@ -47,7 +48,12 @@ function App() {
     <main className="container">
       <div className="todo-form">
         {error.show &&
-          <h1 className='alert danger'>{error.msg}</h1>}
+          <Alert
+          {...error}
+          list={list}
+          removeAlert={showAlert}
+          />
+        }
         <form
           className='d-flex'
           onSubmit={handleSubmit}
