@@ -1,12 +1,22 @@
-import { useState} from 'react';
+import { useState,useEffect} from 'react';
 import { nanoid } from 'nanoid';
 import List from './List';
 import Alert from './Alert';
 
+//read the local-storage to get a list of todos if existed
+const getLocalList = () => {
+  let localList = localStorage.getItem('todos');
+  if (localList) {
+    return JSON.parse(localList);
+  } else {
+    return [];
+  }
+};
+
 function App() {
 
   const [item, setItem] = useState('');
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalList());
   const [error, setError] = useState({ show: true, msg: 'this is an error', clr: '' });
   const [editing, setEditing] = useState(false);
   const [editID, setEditID] = useState('');
@@ -77,6 +87,11 @@ function App() {
   };
   
 
+    //add the list to the local storage everytime the list updated
+    useEffect(() => {
+      localStorage.setItem('todos', JSON.stringify(list));
+    }, [list]);
+  
   return (
     <main className="container">
       <div className="todo-form">
@@ -94,7 +109,7 @@ function App() {
           <input
             type="text"
             value={item}
-            onChange={(e) => setItem(e.target.value.trim())}
+            onChange={(e) => setItem(e.target.value)}
           />
           <button className="btn">
             add
