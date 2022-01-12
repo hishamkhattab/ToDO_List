@@ -74,8 +74,9 @@ function App() {
       setItem(editedItem.title);
       setEditID(id);
       setEditing(true);
-    };
+  };
   
+
   return (
     <main className="container">
       <div className="todo-form">
