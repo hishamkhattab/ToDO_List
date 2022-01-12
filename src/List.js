@@ -1,6 +1,6 @@
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-const List = ({list,deleteItem}) => {
+const List = ({list,deleteItem,getEditID}) => {
 
 
     const listElement = list.map(el => {
@@ -10,7 +10,8 @@ const List = ({list,deleteItem}) => {
             <div className="todo-control d-flex">
                 <button
                     type='button'
-                    className='edit-btn'
+                        className='edit-btn'
+                        onClick={() => getEditID(el.id)}
                 >
                 <FaEdit />
                 </button>

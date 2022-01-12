@@ -8,6 +8,8 @@ function App() {
   const [item, setItem] = useState('');
   const [list, setList] = useState([]);
   const [error, setError] = useState({ show: true, msg: 'this is an error', clr: '' });
+  const [editing, setEditing] = useState(false);
+  const [editID, setEditID] = useState('');
 
 
   //how to add item to the list
@@ -16,7 +18,22 @@ function App() {
 
     if (!item) {
       showAlert(true, 'please add something.', 'danger');
-    } else {
+    } else if (item && editing) {
+      //loop throught the list to find the item
+      //change the item and keep other prop
+      setList(list.map(el => {
+        if (el.id === editID) {
+          return { ...el, title: item };
+        }
+        return el;
+      }));
+      //raise a flag that item is edited successfully
+      showAlert(true, 'item been edited.', 'success');
+      //set editing back to false
+      setEditID(null);
+      setEditing(false);
+      setItem('');
+    }else {
       //create an object as new item 
       //add the item to the list 
       const newItem = {
@@ -50,6 +67,14 @@ function App() {
       setList([]);
       showAlert(true, 'clear all of the to-dos.', 'danger');
   };
+
+    //get the id of the edited item
+    const getEditID = (id) => {
+      const editedItem = list.find(i => i.id === id);
+      setItem(editedItem.title);
+      setEditID(id);
+      setEditing(true);
+    };
   
   return (
     <main className="container">
@@ -68,7 +93,7 @@ function App() {
           <input
             type="text"
             value={item}
-            onChange={(e) => setItem(e.target.value)}
+            onChange={(e) => setItem(e.target.value.trim())}
           />
           <button className="btn">
             add
@@ -77,6 +102,7 @@ function App() {
         <List
           list={list}
           deleteItem={deleteItem}
+          getEditID={getEditID}
         />
         </div>
       {list.length > 0 && <button
